@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @PostMapping(value = "/signup",consumes = "application/json",produces = "application/json")
     public void signup(@RequestBody User user) {
-        
+
     }
 }
