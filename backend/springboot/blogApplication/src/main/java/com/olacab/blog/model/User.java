@@ -1,16 +1,18 @@
 package com.olacab.blog.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "userinfo")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false,length =20)
     private String username;
+    @Column(nullable = false,length =30)
     private String email;
+    @Column(nullable = false,length =30)
     private String password;
 
     public long getId() {
