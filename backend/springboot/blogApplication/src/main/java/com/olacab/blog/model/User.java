@@ -7,6 +7,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "userinfo")
 public class User {
+
     private long id;
     private String username;
     private String email;

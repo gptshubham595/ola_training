@@ -1,5 +1,6 @@
 package com.olacabs.social.controller;
 
+import com.olacabs.social.model.PostRequestData;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

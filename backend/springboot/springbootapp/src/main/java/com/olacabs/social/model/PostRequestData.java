@@ -1,4 +1,4 @@
-package com.olacabs.social.controller;
+package com.olacabs.social.model;
 
 public class PostRequestData {
     private String username;
