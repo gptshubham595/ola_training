@@ -8,7 +8,7 @@ pom.xml
 	Spring APP -(Obj)-> JPA Hibernate -(Que)-> MySQL Conenctor -> DB
 
 	- check username and db exists in mysql 
-
+	- https://spring.io/guides/gs/accessing-data-mysql/
 	- application.properties in resources
 		server.port = 3200
 		spring.jpa.hibernate.ddl-auto=update
@@ -54,6 +54,7 @@ pom.xml
 				- findBy is default added by variable names
 				
 		- Service
+			- Business Logic
 			- UserService
 				- @Service
 				- @Autowired userRepo userRepoObj;	
@@ -62,9 +63,11 @@ pom.xml
 					- check the results of userRepoObj is null or not
 
 	- Annotations
+		- @SpringBootApplication //Start
 		- @Entity // to create table 
 		- @Table(name="userInfo") // to name the table with different name other than  the  model class file  
 		- @Service // Autowire will only work if @Service tag is applied
 		- @Autowired //Use instead of Obj obj = new Obj();
 		- @GetMapping // To use GET Request handling
 		- @PostMapping(@Request) 
+		- @Id // primary

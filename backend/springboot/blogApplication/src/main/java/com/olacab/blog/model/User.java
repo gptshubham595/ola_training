@@ -7,13 +7,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "userinfo")
 public class User {
-
+    @Id
     private long id;
     private String username;
     private String email;
     private String password;
 
-    @Id
     public long getId() {
         return id;
     }
