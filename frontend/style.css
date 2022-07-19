@@ -1,0 +1,52 @@
+#para{
+    background-color: blueviolet;
+}
+.para {
+    background-color: blueviolet;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    background-color: orange;
+    padding: 10px;
+    justify-content: center; /* horizontal*/
+    align-items: center; /* vertical */
+    height: 500px;
+}
+.container1{
+    display: flex;
+}
+.btn1{
+    width: 20%;
+
+}
+.sub{
+    background-color: dodgerblue;
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
+    transition-delay: 0.5s;
+}
+.sub:hover{
+    flex-direction: row-reverse;
+    transform: translate(10px,0px);
+    margin:10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+embed{
+    display: none;
+}
+.A:hover{
+    background-color: red;
+}
+.B:hover {
+    background-color: greenyellow;
+}
+.C:hover{
+    background-color: blueviolet;
+}

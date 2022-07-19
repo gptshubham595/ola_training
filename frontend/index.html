@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ola Training</title>
+    <style>
+      .heading {
+        background-color: dodgerblue;
+      }
+      p {
+        background-color: orange;
+      }
+      #change-text {
+        background-color: aquamarine;
+      }
+      .para {
+        background-color: blueviolet;
+      }
+      .btn {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: dodgerblue;
+        color: white;
+        margin: 5px;
+        cursor: grabbing;
+        transition-duration: 0.5s;
+      }
+      .btn:hover {
+        background-color: green;
+        box-shadow: 5px 5px 5px grey;
+        transform: translate(0px, -10px);
+      }
+      img:hover {
+        transform: translate(-10px, -10px);
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <center>
+      <h1 class="heading">Cheems Hemre!</h1>
+      <h1>Hemllo homw amre yomu?</h1>
+      <img
+        src="https://play-lh.googleusercontent.com/xlnwmXFvzc9Avfl1ppJVURc7f3WynHvlA749D1lPjT-_bxycZIj3mODkNV_GfIKOYJmG"
+        width="300px"
+        height="300px"
+      />
+      <h3 id="change-text" class="para">Woah!</h3>
+      <button class="btn" id="Cheems">CHEEMS GENERATOR</button>
+    </center>
+
+    <ul>
+      <li>Jamva</li>
+      <li>Pymthon</li>
+    </ul>
+
+    <p id="para">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam possimus
+      minima odit impedit tempore nostrum, ad debitis assumenda, facere quasi
+      fugit atque, praesentium voluptas provident repudiandae voluptate
+      asperiores cum quas.
+    </p>
+    <div>
+      <p>Sample para</p>
+      <span> This</span>
+    </div>
+    <h1>Flex</h1>
+    <div class="container">
+      <div class="sub A">A</div>
+      <div class="sub B">B</div>
+      <div class="sub C">C</div>
+    </div>
+
+    <div class="container1">
+      <button class="btn btn1">Click</button>
+      <button class="btn btn1">Click</button>
+      <button class="btn btn1">Click</button>
+      <button class="btn btn1">Click</button>
+      <button class="btn btn1">Click</button>
+    </div>
+
+    <script>
+      //   console.clear();
+      var c = "New Cheems here!";
+      if (null || undefined || false) console.log(typeof c);
+      console.log("A" - "B");
+
+      function show() {
+        return 10 + 20;
+      }
+      function display(fun) {
+        console.log(fun());
+        console.log(fun);
+      }
+      display(show);
+
+      var obj = {
+        id: 101,
+        name: "Alex",
+        show: function () {
+          console.log(this.id + this.name);
+        },
+      };
+      obj.show();
+      class Student {
+        constructor() {
+          this.id = 101;
+          this.name = "Alex";
+        }
+        show() {
+          console.log(this.id + this.name);
+        }
+      }
+      var st = new Student();
+      st.show();
+    </script>
+  </body>
+</html>
