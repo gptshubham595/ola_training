@@ -6,31 +6,59 @@ import com.olacab.blog.model.SignupResponse;
 import com.olacab.blog.model.User;
 import com.olacab.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.apache.commons.codec.digest.DigestUtils;
+
+import static com.olacab.blog.controller.UserController.isLoggedIn;
+import static org.springframework.security.crypto.bcrypt.BCrypt.hashpw;
 
 @Service
 public class UserService {
+    @Value("${pepper}")
+    String pepper;
     @Autowired
     UserRepository userRepository;
 
     public SignupResponse register(User user) {
-        User newUser = userRepository.save(user);
+        User currUser = userRepository.findByEmail(user.getEmail());
         SignupResponse signupResponse = new SignupResponse();
-        if (newUser == null) {
+
+        if(currUser != null){
             signupResponse.setSignupStatus(false);
             signupResponse.setMessage("Signup Failed");
-        } else {
-            signupResponse.setSignupStatus(true);
-            signupResponse.setMessage("Signup Success");
+            return signupResponse;
+        }else{
+            String salt = BCrypt.gensalt();
+            String hashedPassword=BCrypt.hashpw(user.getPassword()+pepper, salt);
+            user.setPassword(hashedPassword);
+            user.setSalt(salt);
+            User newUser = userRepository.save(user);
+            if (newUser == null) {
+                signupResponse.setSignupStatus(false);
+                signupResponse.setMessage("Signup Failed");
+            } else {
+                signupResponse.setSignupStatus(true);
+                signupResponse.setMessage("Signup Success");
+            }
         }
-//        userRepository.save(user);
         return signupResponse;
     }
 
     public LoginResponse authenticate(LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail());
         LoginResponse loginResponse = new LoginResponse();
-        if (user != null && user.getPassword().equals(loginRequest.getPassword())) {
+
+//        String hashedPasswordOrig=BCrypt.hashpw(user.getPassword()+pepper, user.getSalt());
+        String hashedPasswordNew=BCrypt.hashpw(loginRequest.getPassword()+pepper,  user.getSalt());
+
+        if(user==null) {
+            loginResponse.setLoginStatus(false);
+            loginResponse.setMessage("Login failed! Invalid credentials ..");
+        }
+        else if (user != null && hashedPasswordNew.equals(user.getPassword())) {
             loginResponse.setLoginStatus(true);
             loginResponse.setMessage("Login successful");
         } else {

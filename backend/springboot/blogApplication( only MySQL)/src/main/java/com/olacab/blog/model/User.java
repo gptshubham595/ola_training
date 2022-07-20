@@ -1,12 +1,9 @@
 package com.olacab.blog.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
-//@Document("userinfo")
+@Table(name = "userinfo2")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,17 +14,6 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
-    private String salt;
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
 
     public long getId() {
         return id;
