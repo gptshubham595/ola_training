@@ -1,0 +1,193 @@
+[
+  {
+    "endpoint": "signup",
+    "path": "/register",
+    "method": "POST",
+    "request:data": {
+      "username": {
+        "type": "String",
+        "max": 30,
+        "required": true
+      },
+      "password": {
+        "type": "String",
+        "max": 20,
+        "min": 8,
+        "required": true
+      },
+      "email": {
+        "type": "String",
+        "max": 30,
+        "min": 6,
+        "required": true
+      },
+      "mobile": {
+        "type": "String",
+        "country_code": {
+          "type": "String",
+          "min": 2,
+          "max": 2
+        },
+        "max": 10,
+        "min": 10,
+        "required": true
+      }
+    },
+    "response": [
+      {
+        "status": "success",
+        "response": {
+          "flag": true,
+          "token": {
+            "type": "String"
+          },
+          "message": "Verification mail sent"
+        }
+      },
+      {
+        "status": "client-error",
+        "response": {
+          "flag": false,
+          "message": "signed up failed"
+        }
+      }
+    ]
+  },
+  {
+    "endpoint": "verify",
+    "path": "/verify",
+    "method": "POST",
+    "request:data": {
+      "email_otp": {
+        "type": "String",
+        "max": 6,
+        "min": 6,
+        "required": true
+      },
+      "mobile_otp": {
+        "type": "String",
+        "max": 6,
+        "min": 6,
+        "required": true
+      },
+      "token": {
+        "type": "String",
+        "required": true
+      }
+    },
+    "response": [
+      {
+        "status": "success",
+        "response": {
+          "flag": true,
+          "message": "successfully verified"
+        }
+      },
+      {
+        "status": "client-error",
+        "response": {
+          "flag": false,
+          "message": "Verification failed"
+        }
+      }
+    ]
+  },
+  {
+    "endpoint": "login",
+    "path": "/login",
+    "method": "POST",
+    "request:data": {
+      "session_token": {
+        "type": "String",
+        "required": true
+      },
+      "username": {
+        "type": "String",
+        "max": 30,
+        "required": true
+      },
+      "password": {
+        "type": "String",
+        "max": 20,
+        "required": true
+      }
+    },
+    "response": [
+      {
+        "status": "success",
+        "response": {
+          "http-status": 200,
+          "flag": true,
+          "message": "successfully Logged in"
+        }
+      },
+      {
+        "status": "client-error",
+        "response": {
+          "http-status": 401,
+          "flag": false,
+          "message": "Invalid Credentials"
+        }
+      }
+    ]
+  },
+  {
+    "endpoint": "logout",
+    "path": "/logout",
+    "method": "GET",
+    "request:data": {
+      "username": {
+        "type": "String",
+        "max": 30,
+        "required": true
+      },
+      "session_token": {
+        "type": "String",
+        "required": true
+      }
+    },
+    "response": {
+      "http-status": 200,
+      "response:data": {
+        "success": {
+          "flag": true,
+          "message": "successfully Logged out"
+        },
+        "error": {
+          "flag": false,
+          "message": "logout failed"
+        }
+      }
+    }
+  },
+  {
+    "endpoint": "profile",
+    "path": "/profile",
+    "method": "POST",
+    "request:data": {
+      "username": {
+        "type": "String",
+        "max": 30,
+        "required": true
+      },
+      "session_token": {
+        "type": "String",
+        "required": true,
+        "validity": 10
+      }
+    },
+    "response": {
+      "http-status": 200,
+      "response:data": {
+        "success": {
+          "flag": true,
+          "data": "userdata"
+        },
+        "error": {
+          "flag": false,
+          "data": "logout failed"
+        }
+      }
+    }
+  }
+]

@@ -1,7 +1,5 @@
 package com.olacab.blog.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,9 +9,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = false,length =20)
+    @Column(nullable = false, length = 20, unique = true)
     private String username;
-    @Column(nullable = false,length =30)
+    @Column(nullable = false, length = 30, unique = true)
     private String email;
     @Column(nullable = false)
     private String password;

@@ -11,7 +11,7 @@ public class Article {
 
     @Column(nullable = false, length = 30)
     private String userId;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String title;
 
     @Column(nullable = false, length = 200)

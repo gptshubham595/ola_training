@@ -3,8 +3,6 @@ package com.olacab.blog.model;
 public class ArticleResponse {
     private boolean isArticleAdded;
     private String message;
-
-
     public boolean isArticleAdded() {
         return isArticleAdded;
     }

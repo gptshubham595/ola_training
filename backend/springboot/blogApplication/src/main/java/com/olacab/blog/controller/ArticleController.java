@@ -42,7 +42,8 @@ public class ArticleController {
         //localhost:3200/getArticle?articleId=101
         return "id -> " + articleId.toString() + "";
     }
-        @GetMapping(value = "/getArticle/get/{articleId}", consumes = "application/json", produces = "application/json")
+
+    @GetMapping(value = "/getArticle/get/{articleId}", consumes = "application/json", produces = "application/json")
     public String GETArticlePathVariable(@PathVariable Long articleId) throws IOException {
 //            localhost:3200/getArticle/get/101
         return "id -> " + articleId.toString() + "";

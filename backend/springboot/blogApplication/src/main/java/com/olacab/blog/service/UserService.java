@@ -7,13 +7,8 @@ import com.olacab.blog.model.User;
 import com.olacab.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-import org.apache.commons.codec.digest.DigestUtils;
-
-import static com.olacab.blog.controller.UserController.isLoggedIn;
-import static org.springframework.security.crypto.bcrypt.BCrypt.hashpw;
 
 @Service
 public class UserService {
@@ -26,13 +21,13 @@ public class UserService {
         User currUser = userRepository.findByEmail(user.getEmail());
         SignupResponse signupResponse = new SignupResponse();
 
-        if(currUser != null){
+        if (currUser != null) {
             signupResponse.setSignupStatus(false);
             signupResponse.setMessage("Signup Failed");
             return signupResponse;
-        }else{
+        } else {
             String salt = BCrypt.gensalt();
-            String hashedPassword=BCrypt.hashpw(user.getPassword()+pepper, salt);
+            String hashedPassword = BCrypt.hashpw(user.getPassword() + pepper, salt);
             user.setPassword(hashedPassword);
             user.setSalt(salt);
             User newUser = userRepository.save(user);
@@ -52,13 +47,12 @@ public class UserService {
         LoginResponse loginResponse = new LoginResponse();
 
 //        String hashedPasswordOrig=BCrypt.hashpw(user.getPassword()+pepper, user.getSalt());
-        String hashedPasswordNew=BCrypt.hashpw(loginRequest.getPassword()+pepper,  user.getSalt());
+        String hashedPasswordNew = BCrypt.hashpw(loginRequest.getPassword() + pepper, user.getSalt());
 
-        if(user==null) {
+        if (user == null) {
             loginResponse.setLoginStatus(false);
             loginResponse.setMessage("Login failed! Invalid credentials ..");
-        }
-        else if (user != null && hashedPasswordNew.equals(user.getPassword())) {
+        } else if (user != null && hashedPasswordNew.equals(user.getPassword())) {
             loginResponse.setLoginStatus(true);
             loginResponse.setMessage("Login successful");
         } else {

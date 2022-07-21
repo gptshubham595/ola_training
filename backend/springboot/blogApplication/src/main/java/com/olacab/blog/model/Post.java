@@ -6,7 +6,6 @@ import javax.persistence.Id;
 
 @Document("posts")
 public class Post {
-
     @Id
     private long postId;
     private long userId;
